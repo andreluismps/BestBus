@@ -23,11 +23,11 @@ public class MelhorCaminhoDijkstraHeap implements IMelhorCaminho{
 	public void calcularCaminhos(ParadaOnibus origem){
 		
 		origem.setTempoMinimo(0);
-		PriorityQueue<ParadaOnibus> vertexQueue = new PriorityQueue<ParadaOnibus>();
-		vertexQueue.add(origem);
+		PriorityQueue<ParadaOnibus> filaDeParadas = new PriorityQueue<ParadaOnibus>();
+		filaDeParadas.add(origem);
 
-		while (!vertexQueue.isEmpty()) {
-			ParadaOnibus paradaOnibus = vertexQueue.poll();
+		while (!filaDeParadas.isEmpty()) {
+			ParadaOnibus paradaOnibus = filaDeParadas.poll();
 
 			// Visit each edge exiting u
 			for (Trecho trecho : paradaOnibus.getTrechosSaida()) {
@@ -35,11 +35,11 @@ public class MelhorCaminhoDijkstraHeap implements IMelhorCaminho{
 				int tempo = trecho.getTempo();
 				int tempoPercurso = paradaOnibus.getTempoMinimo() + tempo;
 				if (tempoPercurso < v.getTempoMinimo()) {
-					vertexQueue.remove(v);
+					filaDeParadas.remove(v);
 
 					v.setTempoMinimo(tempoPercurso);
 					v.setAnterior(paradaOnibus);
-					vertexQueue.add(v);
+					filaDeParadas.add(v);
 				}
 			}
 		}

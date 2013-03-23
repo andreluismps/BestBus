@@ -18,7 +18,7 @@ public class Principal {
 		//bonfim boa viagem 1
 		Trecho bonfimBoaViagem = new Trecho(8, baixaDoBonfim, boaViagem);
 		//bonfim boa viagem 2
-		Trecho bonfimMontSerrat = new Trecho(4, baixaDoBonfim, montSerrat);
+		Trecho bonfimMontSerrat = new Trecho(7, baixaDoBonfim, montSerrat);
 		Trecho montSerratBoaViagem = new Trecho(3, montSerrat, boaViagem);
 		
 		// fim 1
@@ -47,8 +47,9 @@ public class Principal {
 		hiperFrango.getTrechosSaida().add(hiperFrangoRoma);
 				
 		
-		IMelhorCaminho melhorCaminho = new MelhorCaminhoDijkstraHeap();
-		List<ParadaOnibus> rota = melhorCaminho.getMelhorCaminho(fimDeLinhaRibeira, largoRoma);
+		IMelhorCaminho melhorCaminhoDijkstraHeap = new MelhorCaminhoDijkstraHeap();
+		List<ParadaOnibus> rota = melhorCaminhoDijkstraHeap.getMelhorCaminho(fimDeLinhaRibeira, largoRoma);
+	
 		System.out.print("In’cio");
 		for(ParadaOnibus paradaOnibus : rota){
 			
@@ -56,6 +57,17 @@ public class Principal {
 		}
 		System.out.println("Fim");
 		System.out.println("Menor tempo entre "+ fimDeLinhaRibeira +" e "+ largoRoma + ": " + largoRoma.getTempoMinimo() + " minuto(s)");
+		
+		IMelhorCaminho melhorCaminhoDijkstraArray = new MelhorCaminhoDijkstraArray();
+		List<ParadaOnibus> rotaArray = melhorCaminhoDijkstraArray.getMelhorCaminho(fimDeLinhaRibeira, largoRoma);
+		System.out.print("In’cio");
+		for(ParadaOnibus paradaOnibus : rotaArray){
+			
+			System.out.print(" :: " + paradaOnibus + " :: ");
+		}
+		System.out.println("Fim");
+		System.out.println("Menor tempo entre "+ fimDeLinhaRibeira +" e "+ largoRoma + ": " + largoRoma.getTempoMinimo() + " minuto(s)");
+		
 		
 	}
 }
